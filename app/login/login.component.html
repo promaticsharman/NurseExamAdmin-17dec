@@ -1,0 +1,26 @@
+<div class="form-signin">
+  <img class="mb-4" src="assets/img/logo.png" alt="" width="150" height="66">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+  <label for="inputEmail" class="sr-only">Email address</label>
+
+  <input type="email" class="form-control" placeholder="Email address" [formControl]="Form.controls['email']"
+    autocomplete="email">
+  <p style="color: #FF0000" *ngIf="Form.controls['email'].invalid  && ( Form.controls['email'].touched)">
+    Please provide valid email
+  </p>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+
+  <input type="password" class="form-control" placeholder="Password" [formControl]="Form.controls['password']">
+  <p style="color: #FF0000" *ngIf="Form.controls['password'].invalid  && ( Form.controls['password'].touched)">
+    Please provide valid password
+  </p>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" [(ngModel)]="remember_me" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" (click)="submit()">Sign in</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
+</div>

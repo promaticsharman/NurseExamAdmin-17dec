@@ -1,0 +1,297 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form [formGroup]="questionForm">
+                    <div class="card ">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Exam Questions</h4>
+                        </div>
+
+                        <div class="card-body block-card custom_style">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Select Exam</mat-label>
+                                            <mat-select #selectExam [(value)]="selectedExam" (selectionChange)="onChangeExam()">
+                                            <mat-option *ngFor="let exam of examList" [value]="exam._id">
+                                                {{ exam.examName }}
+                                            </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div> -->
+
+                                    <!--
+                                        <label>Select Exam</label>
+                                        <select class="custom-form form-control">
+                                            <option>nclex exam 1</option>
+                                            <option>nclex exam 2</option>
+                                        </select>
+                                    </div> -->
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Enter Question</label>
+                                            <editor [init]="{
+                                                height: 300,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount',
+                                                  'table'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" formControlName="question" required [(ngModel)]="examQuestion" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <mat-form-field appearance="fill">
+                                            <mat-label>Type of Answers</mat-label>
+                                            <mat-select #mySelect [(value)]="selected" (selectionChange)="onChange()">
+                                                <mat-option value="Single">Single Type</mat-option>
+                                                <mat-option value="Multiple">Multiple Type</mat-option>
+                                                <mat-option value="Yes_No">Yes/No</mat-option>
+                                                <mat-option value="DragDrop">Drag'n Drop</mat-option>
+                                                <mat-option value="FillUp">Fill Up's</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="selected == 'Single' || selected == 'Multiple'">
+                                <div class="col-md-6" *ngFor="let item of Answer; let i = index">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Answer {{i + 1}}</label>
+                                            <editor [init]="{
+                                                height: 200,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount',
+                                                  'table'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="item.answer" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Answer 2</label>
+                                            <editor [init]="{
+                                                height: 200,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="questionAnswer.answerTwo.answer" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Answer 3</label>
+                                            <editor [init]="{
+                                                height: 200,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="questionAnswer.answerThree.answer" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Answer 4</label>
+                                            <editor [init]="{
+                                                height: 200,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="questionAnswer.answerFour.answer" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Answer 5</label>
+                                            <editor [init]="{
+                                                height: 200,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="questionAnswer.answerFive.answer" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group" *ngIf="selected == 'Single'">
+                                        <label>Select Correct Answer</label>
+                                        <div class="radios_div margn_div">
+                                            <mat-radio-group aria-label="Select an option" name="answer" [value]="single_correct" (change)="singleCorrect($event)">
+                                                <mat-radio-button value="0" >Answer 1</mat-radio-button>
+                                                <mat-radio-button value="1" >Answer 2</mat-radio-button>
+                                                <mat-radio-button value="2" >Answer 3</mat-radio-button>
+                                                <mat-radio-button value="3" >Answer 4</mat-radio-button>
+                                                <mat-radio-button value="4" >Answer 5</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="selected == 'Multiple'">
+                                        <label>Select Correct Answer</label>
+                                        <div class="chkbox_div margn_div">
+                                            <mat-checkbox value="0" (change)="toggle($event, 0)">Answer 1</mat-checkbox>
+                                            <mat-checkbox value="1" (change)="toggle($event, 1)">Answer 2</mat-checkbox>
+                                            <mat-checkbox value="2" (change)="toggle($event, 2)">Answer 3</mat-checkbox>
+                                            <mat-checkbox value="3" (change)="toggle($event, 3)">Answer 4</mat-checkbox>
+                                            <mat-checkbox value="4" (change)="toggle($event, 4)">Answer 5</mat-checkbox>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="selected == 'Yes_No'">
+                                        <label>Select Correct Answer</label>
+                                        <div class="radios_div margn_div">
+                                            <mat-radio-group aria-label="Select an option" name="yes_no" [value]="yesNo" (change)="yes_no($event)">
+                                                <mat-radio-button value="true">Yes</mat-radio-button>
+                                                <mat-radio-button value="false">No</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="selected == 'DragDrop'">
+                                        <label>Add Appropriate Steps</label>
+                                        <div class="col-md-12" *ngFor="let appro of approriateSteps; let i = index;">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <input matInput placeholder="Appropriate Steps" [(ngModel)]="approSteps[i]" [ngModelOptions]="{standalone: true}">
+                                            </mat-form-field>    
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button mat-raised-button color="primary" (click)="addAppropriateSteps(i)">Add More Steps</button> 
+                                        </div>
+                                        <br><label>Add Steps in Correct Ones, We will Randomize these steps on frontend.</label>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="selected == 'FillUp'">
+                                        <label>Add Fill Up's</label>
+                                        <div class="col-md-12" *ngFor="let fillup of fillUps; let i = index;">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <input matInput placeholder="Add Fill Up's" [(ngModel)]="fill[i]" [ngModelOptions]="{standalone: true}">
+                                            </mat-form-field>    
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button mat-raised-button color="primary" (click)="addFillUps(i)">Add More Steps</button> 
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" *ngIf="selected == 'FillUp'">
+                                        <label>Add Dropdown Options</label>
+                                        <div class="col-md-12" *ngFor="let ddOption of dropdownOptions; let i = index;">
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <input matInput placeholder="Add Option" [(ngModel)]="addOptions[i]" [ngModelOptions]="{standalone: true}">
+                                            </mat-form-field>    
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button mat-raised-button color="primary" (click)="addDropdownOption(i)">Add More Options</button> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="editor_txtr">
+                                            <label>Enter Answer's Description</label>
+                                            <editor [init]="{
+                                                height: 300,
+                                                menubar: false,
+                                                plugins: [
+                                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                                  'searchreplace visualblocks code fullscreen',
+                                                  'insertdatetime media table paste code help wordcount',
+                                                  'table'
+                                                ],
+                                                toolbar:
+                                                  'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                                                  alignleft aligncenter alignright alignjustify | \
+                                                  bullist numlist outdent indent | removeformat | help'
+                                                }" [(ngModel)]="answerDescription" [ngModelOptions]="{standalone: true}"> 
+                                            </editor>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="text-left">
+                                            <mat-checkbox value="Paid" (change)="questionType($event, 'Free')">This Question is Free</mat-checkbox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right add_question_button">
+                            <button mat-raised-button type="submit" (click)="submitData()" color="primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

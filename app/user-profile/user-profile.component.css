@@ -1,0 +1,74 @@
+span.mat_imag {
+    width: 150px;
+    height: 150px;
+    background: #fafafa;
+    display: inline-block;
+}
+.mat_imag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.inpt_icon {
+    position: absolute;
+    top: -12px;
+    right: -13px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    background: #1736cd;
+}
+.inpt_icon input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+.inpt_icon .fa {
+    color:#fff;
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    font-size: 17px;
+    z-index: 0;
+    cursor: pointer;
+}
+.card-avatar img{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+.card-avatar{
+    position: relative;
+    overflow: visible!important;
+}
+.upload_66{
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 100%;
+    transform: scale(1.3);
+}
+.upload_66 i {
+    color: #5b6bc1;
+}
+.upload_66 input{
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    opacity: 0;
+    cursor: pointer;
+}

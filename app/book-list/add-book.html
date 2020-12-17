@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 30px;">
+                <form [formGroup]="bookForm">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Add Book</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Select Book Category</mat-label>
+                                        <mat-select formControlName="category" [(ngModel)]="addBook.bookCategory" [ngModelOptions]="{standalone: true}">
+                                          <mat-option *ngFor="let book of bookCategoryList" [value]="book._id">
+                                            {{ book.category }}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                      <div *ngIf="bookForm.controls['category'].touched &&
+                                      bookForm.controls['category'].invalid"
+                                      class="text-danger">
+                                <div *ngIf="bookForm.controls['category'].errors &&
+                                        bookForm.controls['category'].errors.required">
+                                        Book Category is required.
+                                </div>
+                          </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Description" rows="5" formControlName="description" [(ngModel)]="addBook.frame" [ngModelOptions]="{standalone: true}"></textarea>
+                                        <!-- <input matInput placeholder="Description" [(ngModel)]="addCategory.description" [ngModelOptions]="{standalone: true}"> -->
+                                    </mat-form-field>
+                                    <div *ngIf="bookForm.controls['description'].touched &&
+                                                  bookForm.controls['description'].invalid"
+                                                  class="text-danger">
+                                            <div *ngIf="bookForm.controls['description'].errors &&
+                                                    bookForm.controls['description'].errors.required">
+                                                    Description is required.
+                                            </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button type="submit" class="btn btn-danger" [disabled]="!bookForm.valid" (click)="createBook()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

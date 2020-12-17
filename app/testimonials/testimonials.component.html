@@ -1,0 +1,77 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form [formGroup]="testimonialForm">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Testimonials</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="row">
+                                <!-- Author Name -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Author Name" formControlName="authorName" [(ngModel)]="testimonialsData.authorName"
+                                        [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="testimonialForm.controls['authorName'].touched &&
+                                    testimonialForm.controls['authorName'].invalid"
+                                                class="text-danger">
+                                        <div *ngIf="testimonialForm.controls['authorName'].errors &&
+                                        testimonialForm.controls['authorName'].errors.required">
+                                            Author Name is required.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Designation -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Designation" formControlName="designation" [(ngModel)]="testimonialsData.designation"
+                                        [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="testimonialForm.controls['designation'].touched &&
+                                    testimonialForm.controls['designation'].invalid"
+                                                class="text-danger">
+                                        <div *ngIf="testimonialForm.controls['designation'].errors &&
+                                        testimonialForm.controls['designation'].errors.required">
+                                            Designation is required.</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Image -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <label>Image</label>
+                                            <input matInput readonly />
+                                            <input type="file" #uploadFile value="testimonialsData.image"
+                                                [ngModelOptions]="{standalone: true}"
+                                                (change)="onFileChange($event)" accept="image/*">
+                                    </mat-form-field>
+                                </div>
+                                
+                                <!-- Description -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Description" formControlName="description" [(ngModel)]="testimonialsData.description"
+                                        [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="testimonialForm.controls['description'].touched &&
+                                    testimonialForm.controls['description'].invalid"
+                                                class="text-danger">
+                                        <div *ngIf="testimonialForm.controls['description'].errors &&
+                                        testimonialForm.controls['description'].errors.required">
+                                            Description is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button mat-raised-button type="submit" class="btn btn-danger" [disabled]="!testimonialForm.valid" (click)="saveTestimonials()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

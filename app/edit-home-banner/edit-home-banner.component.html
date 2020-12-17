@@ -1,0 +1,69 @@
+<div class="loader" *ngIf="showLoader">
+    <img src="https://i.pinimg.com/originals/f9/9f/c8/f99fc83c656da7ec8db2f6cbc88c6fa6.gif" class="img-fluid" />
+</div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form>
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Banner</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="row">
+                                <!-- Top Heading -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Top Heading" [(ngModel)]="bannerData.top_heading"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Heading -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Heading" [(ngModel)]="bannerData.heading"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Description" [(ngModel)]="bannerData.description"
+                                            [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+
+                                <!-- Image -->
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <label>Image</label>
+                                        <input matInput readonly />
+                                        <span class="mat_imag position-relative">
+                                            <img *ngIf="image" class="img-responsive" [src]="image" />
+                                            <img *ngIf="!image && banner_image" class="img-responsive" src="{{img_url}}{{banner_image}}" />
+                                            <span class="inpt_icon">
+                                                <input type="file" #uploadFile value="bannerData.image"
+                                                    (change)="onFileChange($event)" accept="image/*">
+                                                <i class="fa fa-pencil" ></i>
+                                            </span>
+                                        </span>
+                                        <!-- <input type="file" #uploadFile value="bannerData.image"
+                                            [ngModelOptions]="{standalone: true}" (change)="onFileChange($event)"
+                                            accept="image/*"> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button mat-raised-button type="submit" class="btn btn-danger"
+                                    (click)="editBanner()">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Edit User List</h4>   
+                    </div>
+                    <div class="card-body">
+                        <form  [formGroup]="editUserForm">
+                            <div class="col-md-12">
+                              <mat-form-field class="example-full-width">
+                                <input matInput formControlName="name" [(ngModel)]="Name" placeholder="Name">
+                              </mat-form-field>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Email address" [(ngModel)]="email" [class.is-invalid] ="Email.invalid && Email.touched" formControlName="email" type="email">
+                                </mat-form-field>
+                                  <div *ngIf="(Email.invalid && Email.touched) || Email.dirty">
+                                       <small *ngIf="Email.errors?.required" class="text-danger">email is required</small>
+                                       <small *ngIf="Email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+                                  </div>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Phone Number" [(ngModel)]="phone" formControlName="phone" type="text">
+                                </mat-form-field>
+                                    <div *ngIf="editUserForm.controls['phone'].invalid && (editUserForm.controls['phone'].dirty || editUserForm.controls['phone'].touched)" class="text-danger">
+                                       <small *ngIf="editUserForm.controls['phone'].errors.required">
+                                          Phone Number is required.
+                                       </small>
+                                    </div>
+                            </div>
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                 <input matInput placeholder="Zip Code" [(ngModel)]="zipcode" formControlName="zipCode" type="text">
+                                </mat-form-field>
+                                   <div *ngIf="editUserForm.controls['zipCode'].invalid &&
+                                       (editUserForm.controls['zipCode'].dirty || editUserForm.controls['zipCode'].touched)" 
+                                       class="text-danger">
+                                     <small *ngIf="editUserForm.controls['zipCode'].errors.required">Zip code is required.</small>
+                                  </div>
+                           </div>
+                           <div class="col-md-12">
+                             <mat-form-field appearance="fill">
+                                 <mat-label>Select Status</mat-label>
+                                <mat-select formControlName="selectedValue"  [(ngModel)]="status" (change)="onChange($event)" >
+                                  <mat-option value="active">
+                                    Active
+                                 </mat-option>
+                                 <mat-option value="inactive">
+                                    Inactive
+                                 </mat-option>
+                                </mat-select>
+                             </mat-form-field>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="update()">Update</button>
+                        </form>
+                     </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+
+                   
+                   
+                   
+<!--                    
+              
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput formControlName="name" [(ngModel)]="Name" placeholder="Name">
+                                    </mat-form-field>
+                                       <div *ngIf="editUserForm.controls['name'].invalid && (editUserForm.controls['name'].dirty || editUserForm.controls['name'].touched)" class="text-danger">
+                                          <small *ngIf="editUserForm.controls['name'].errors.required">
+                                            Name is required.
+                                          </small>
+                                       </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email address" [(ngModel)]="email" [class.is-invalid] ="Email.invalid && Email.touched" formControlName="email" type="email">
+                                    </mat-form-field>
+                                        <div *ngIf="(Email.invalid && Email.touched) || Email.dirty">
+                                           <small *ngIf="Email.errors?.required" class="text-danger">email is required</small>
+                                           <small *ngIf="Email.errors?.pattern" class="text-danger">Please provide a valid email address</small>
+                                        </div>
+                                </div>
+                              
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Phone Number" [(ngModel)]="phone" formControlName="phone" type="text">
+                                  </mat-form-field>
+                                      <div *ngIf="editUserForm.controls['phone'].invalid && (editUserForm.controls['phone'].dirty || editUserForm.controls['phone'].touched)" class="text-danger">
+                                         <small *ngIf="editUserForm.controls['phone'].errors.required">
+                                            Phone Number is required.
+                                         </small>
+                                      </div>
+                                </div>
+                                
+                           
+                                <div class="col-md-4">
+                                   <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Zip Code" [(ngModel)]="zipcode" formControlName="zipCode" type="text">
+                                   </mat-form-field>
+                                      <div *ngIf="editUserForm.controls['zipCode'].invalid &&
+                                          (editUserForm.controls['zipCode'].dirty || editUserForm.controls['zipCode'].touched)" 
+                                          class="text-danger">
+                                        <small *ngIf="editUserForm.controls['zipCode'].errors.required">Zip code is required.</small>
+                                     </div>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="edit()">Edit</button>
+                           
+                        </form>
+                    </div> 
+              -->

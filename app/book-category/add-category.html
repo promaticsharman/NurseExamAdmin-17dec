@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 30px;">
+                <form [formGroup]="bookCategoryForm">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Add Category</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Category" formControlName="bookCategory" [(ngModel)]="addCategory.category" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <div *ngIf="bookCategoryForm.controls['bookCategory'].touched &&
+                                    bookCategoryForm.controls['bookCategory'].invalid"
+                                    class="text-danger">
+                                    <div *ngIf="bookCategoryForm.controls['bookCategory'].errors &&
+                                    bookCategoryForm.controls['bookCategory'].errors.required">
+                                        Book Category is required.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput placeholder="Description" formControlName="categoryDescription" rows="2" [(ngModel)]="addCategory.description" [ngModelOptions]="{standalone: true}"></textarea>
+                                        <!-- <input matInput placeholder="Description" [(ngModel)]="addCategory.description" [ngModelOptions]="{standalone: true}"> -->
+                                    </mat-form-field>
+                                    <div *ngIf="bookCategoryForm.controls['categoryDescription'].touched &&
+                                            bookCategoryForm.controls['categoryDescription'].invalid"
+                                            class="text-danger">
+                                    <div *ngIf="bookCategoryForm.controls['categoryDescription'].errors &&
+                                    bookCategoryForm.controls['categoryDescription'].errors.required">
+                                        Description is required.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button type="submit" class="btn btn-danger" [disabled]="!bookCategoryForm.valid" (click)="createCategory()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

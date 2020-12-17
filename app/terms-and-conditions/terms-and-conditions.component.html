@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="card">
+        <editor
+            [init]="{
+              height: 500,
+              menubar: false,
+              plugins: [
+                'advlist autolink lists link textcolor image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount',
+                'table'
+              ],
+              toolbar:
+                'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help'
+            }"
+            [(ngModel)]="dataSource" [ngModelOptions]="{standalone: true}" ></editor>
+      </div>
+      <div class="text-center">
+        <button mat-raised-button type="submit" class="btn btn-danger" (click)="updateGeneralManagement()">Submit</button>
+      </div>
+    </div>
+</div>
+ 

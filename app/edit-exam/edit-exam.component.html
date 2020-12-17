@@ -1,0 +1,199 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form enctype="multipart/form-data" method="post">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Main Block</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Exam Name" [(ngModel)]="examData.examName" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Price" [(ngModel)]="examData.price" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Validity" [(ngModel)]="examData.validity" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                                <!-- *ngFor="let des of description; let i=index" -->
+                                
+                                <div class="col-md-12" *ngFor="let des of description; let i=index; trackBy:trackByFn;">
+                                    <div *ngFor="let ed of examData.description; let in = index;trackBy:trackByFn;">
+                                        <mat-form-field class="example-full-width" >
+                                            <mat-label>Add Description</mat-label>
+                                            <input matInput placeholder="" [(ngModel)]="examData.description[in]" [ngModelOptions]="{standalone: true}">
+                                        </mat-form-field>
+                                        <!-- *ngIf="i==description.length-1" -->
+                                     </div>
+                                    <div class="col-md-2" *ngIf="i==description.length-1">
+                                        <button mat-raised-button color="primary" (click)="addDesField(des)">Add</button>
+                                    </div>
+                                </div>
+                              <!-- {{examData.description | json}} -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-5">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">First Block</h4>
+                        </div>
+                        <div class="card-body block-card">
+                            <div class="label">
+                                <label>Description</label>
+                            </div>
+                            <div class="card">
+                                <editor [init]="{
+                                      height: 500,
+                                      menubar: false,
+                                      plugins: [
+                                        'advlist autolink lists link textcolor image charmap print preview anchor',
+                                        'searchreplace visualblocks code fullscreen',
+                                        'insertdatetime media table paste code help wordcount',
+                                        'table'
+                                      ],
+                                      toolbar:
+                                        'undo redo | formatselect | forecolor | table |bold italic backcolor | \
+                                        alignleft aligncenter alignright alignjustify | \
+                                        bullist numlist outdent indent | removeformat | help'
+                                    }" [(ngModel)]="examData.description_1" [ngModelOptions]="{standalone: true}"></editor>
+                            </div>
+                            <div class="label">
+                                <label>Second Description</label>
+                            </div>
+                            <div class="card">
+                                <editor [init]="{
+                                      height: 500,
+                                      menubar: false,
+                                      plugins: [
+                                        'advlist autolink lists link textcolor image charmap print preview anchor',
+                                        'searchreplace visualblocks code fullscreen',
+                                        'insertdatetime media table paste code help wordcount',
+                                        'table'
+                                      ],
+                                      toolbar:
+                                        'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                                        alignleft aligncenter alignright alignjustify | \
+                                        bullist numlist outdent indent | removeformat | help'
+                                    }" [(ngModel)]="examData.description_2" [ngModelOptions]="{standalone: true}"></editor>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Second Block</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <label>Image</label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput readonly />
+                                        <input type="file" #uploadFile value="examData.uploadFile"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (change)="onFileChange($event)" accept="image/*">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label>Banner</label>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput readonly />
+                                        
+                                    <input type="file" mat-raised-button #uploadBanner value="examData.uploadBanner"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (change)="onFileBannerChange($event)" accept="image/*">
+                                    
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Heading" [(ngModel)]="examData.heading" [ngModelOptions]="{standalone: true}">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label>Description</label>
+                            </div>
+                            <div class="col-md-12">
+                                <editor [init]="{
+                                height: 500,
+                                menubar: false,
+                                plugins: [
+                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                  'searchreplace visualblocks code fullscreen',
+                                  'insertdatetime media table paste code help wordcount',
+                                  'table'
+                                ],
+                                toolbar:
+                                  'undo redo | formatselect | forecolor | table |bold italic backcolor | \
+                                  alignleft aligncenter alignright alignjustify | \
+                                  bullist numlist outdent indent | removeformat | help'
+                              }" [(ngModel)]="examData.description_3" [ngModelOptions]="{standalone: true}"></editor>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="link-field mt-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Link" [(ngModel)]="examData.link" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label>About Exam</label>
+                            </div>
+                            <div class="col-md-12">
+                                <editor [init]="{
+                                height: 500,
+                                menubar: false,
+                                plugins: [
+                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                  'searchreplace visualblocks code fullscreen',
+                                  'insertdatetime media table paste code help wordcount',
+                                  'table'
+                                ],
+                                toolbar:
+                                  'undo redo | formatselect | forecolor | table |bold italic backcolor | \
+                                  alignleft aligncenter alignright alignjustify | \
+                                  bullist numlist outdent indent | removeformat | help'
+                              }" [(ngModel)]="examData.about" [ngModelOptions]="{standalone: true}"></editor>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label>Features</label>
+                            </div>
+                            <div class="col-md-12">
+                                <editor [init]="{
+                                height: 500,
+                                menubar: false,
+                                plugins: [
+                                  'advlist autolink lists link textcolor image charmap print preview anchor',
+                                  'searchreplace visualblocks code fullscreen',
+                                  'insertdatetime media table paste code help wordcount',
+                                  'table'
+                                ],
+                                toolbar:
+                                  'undo redo | formatselect | forecolor | table | bold italic backcolor | \
+                                  alignleft aligncenter alignright alignjustify | \
+                                  bullist numlist outdent indent | removeformat | help'
+                              }" [(ngModel)]="examData.features" [ngModelOptions]="{standalone: true}"></editor>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button type="submit" (click)="submitData()" class="btn btn-danger">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

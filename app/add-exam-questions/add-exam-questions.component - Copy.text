@@ -1,0 +1,81 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <form>
+                    <div class="card ">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Exam Questions</h4>
+                        </div>
+
+                       <div class="card-body">
+                           <div class="row">
+                               <div class="col-md-11 ml-3">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Select Exam</mat-label>
+                                    <mat-select [(ngModel)]="addQuestionParam.examId" [ngModelOptions]="{standalone: true}">
+                                      <mat-option *ngFor="let exam of examList" [value]="exam._id">
+                                        {{ exam.examName }}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                               </div>
+                           </div>
+                       </div>
+
+                        <div class="card-body block-card custom_style" *ngFor="let que of questions; let q = index;">
+                            <div class="text-right" *ngIf="remQue" (click)="deleteQuestion(q)"><i class="fa fa-times"
+                                    aria-hidden="true"></i></div>
+                            <div class="row">
+                                <div class="col-md-11 ml-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput [(ngModel)]="questions[q].question"
+                                            [ngModelOptions]="{standalone: true}" placeholder="Question">
+                                    </mat-form-field>
+
+                                </div>
+
+                                <div class="col-md-12" *ngFor="let des of que.ans; let i=index; trackBy:trackByFn;">
+                                    <table>
+                                        <tr>
+                                            <td class="col-md-12">
+                                                <mat-form-field class="example-full-width">
+                                                    <input matInput [(ngModel)]="questions[q].ans[i].ans"
+                                                        [ngModelOptions]="{standalone: true}" placeholder="Options">
+                                                </mat-form-field>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <mat-radio-group [name]="questions[q]">
+                                                    <mat-radio-button value="yes" class="tp-radio-button" [(ngModel)]="questions[q].ans[i].correct_answer" ngDefaultControl [ngModelOptions]="{standalone: true}"></mat-radio-button>
+                                                </mat-radio-group>
+                                            </td>
+                                            <td>
+                                                <mat-icon style="cursor: pointer;" (click)="removeOption(q, i)">delete
+                                                </mat-icon>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- *ngIf="i==description.length-1" -->
+
+                                </div>
+                                <div class="col-md-2 ml-3">
+                                    <button mat-raised-button color="primary" (click)="addOptions(q)">Add</button>
+                                </div>
+                                <!-- {{examData.description | json}} -->
+                            </div>
+
+                        </div>
+                        <div class="text-right add_question_button">
+                            <button mat-raised-button type="submit" color="primary" (click)="addQuestion()">Add More
+                                Questions</button>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button mat-raised-button type="submit" (click)="submitData()"
+                            class="btn btn-danger">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

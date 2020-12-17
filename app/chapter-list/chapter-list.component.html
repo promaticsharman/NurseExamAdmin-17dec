@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">{{exam_name}} => Chapter List</h4>
+                            <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
+                        <div class="text-right">
+                            <button mat-raised-button color="primary" (click)="addNewChapter()">Add Chapter</button>
+                        </div>
+                        <mat-form-field>
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. Name">
+                        </mat-form-field>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table mat-table [dataSource]="dataSource" class="mat-table table mat-elevation-z1">
+                                <!-- Position -->
+                                <ng-container matColumnDef="position">
+                                    <th mat-header-cell *matHeaderCellDef>S.No.</th>
+                                    <td mat-cell *matCellDef="let element; let i = index;">{{ i + 1 }}</td>
+                                </ng-container>
+
+                                <!-- Questions -->
+                                <ng-container matColumnDef="chapter">
+                                    <th mat-header-cell *matHeaderCellDef>Chapter</th>
+                                    <td mat-cell *matCellDef="let element">{{element.chapter}}</td>
+                                </ng-container>
+
+                                <!-- Answer -->
+                                <!-- <ng-container matColumnDef="answer">
+                                    <th mat-header-cell *matHeaderCellDef>Answer</th>
+                                    <td mat-cell *matCellDef="let element">{{element.answer}}</td>
+                                </ng-container> -->
+
+                                <!-- Action -->
+                                <ng-container matColumnDef="Action">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">
+                                    Action
+                                </th>
+                                <td class="mat-cell act_td" mat-cell *matCellDef="let element">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item (click)="openEditChapter(element._id)">
+                                            <mat-icon>verified</mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                        <button mat-menu-item (click)="deleteChapter(element._id)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                        <button mat-menu-item routerLink="/topic_list/{{element._id}}/{{element.exam_id}}/{{exam_name}}/{{element.chapter}}">
+                                            <mat-icon>topics</mat-icon>
+                                            <span>Add Topics</span>
+                                        </button>
+                                    </mat-menu>
+                                </td>
+                            </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                            <div>
+                                <mat-paginator [length]="length" [pageSize]="10" [pageSizeOptions]="getPageSizeOptions()"
+                                    (page)="paginationOptionChange($event)">
+                                </mat-paginator>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
